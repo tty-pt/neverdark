@@ -17,7 +17,8 @@ CFLAGS := -g -O0 -Wall -Wno-initializer-overrides ${cflags-${uname}} ${config} \
 ldlibs-Linux := -lbsd
 LDLIBS := -lxxhash -lpcre -lm -lc -ldb -lndc ${ldlibs-${uname}}
 ldflags-Darwin += -L/usr/local/opt/berkeley-db@4/lib
-LDFLAGS	:= ${ldflags-${uname}}
+local-ndc-path != realpath ${srcdir}/../ndc
+LDFLAGS	:= ${ldflags-${uname}} -L${local-ndc-path} -Wl,-rpath,${local-ndc-path}
 
 exe := ../nd
 obj-y := object.o entity.o spacetime.o mcp.o map.o \
@@ -27,13 +28,13 @@ obj-y := object.o entity.o spacetime.o mcp.o map.o \
 	copyright.o interface.o
 
 src = ${obj-y:%.o=%.c}
+LD := gcc
 
 all: ${exe}
 
 $(exe): ${obj-y}
 	@echo LD $@
-	${LINK.c} -o $@ $^ ${LDLIBS} -lrt -lutil
-	# ${LD} ${LDFLAGS} -o $@ $^ ${LDLIBS} -lrt -lutil
+	@${LINK.c} -o $@ $^ ${LDLIBS} -lrt -lutil
 	pwd
 
 .c.o:

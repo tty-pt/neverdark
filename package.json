@@ -2,22 +2,26 @@
   "name": "nd",
   "version": "0.0.1",
   "description": "This is TinyMUCK 2.2fb6.00 (FuzzBall 6.00), a programmable, player expandable, multi-user adventure game.  Please see the CHANGES file for a list of changes from the previous version.",
-  "main": "htdocs/index.js",
-  "entry": "./index.js",
-  "template": "./index.html",
-  "development": true,
-  "static": true,
-  "modulesPath": "chroot_node_modules",
-  "resolve": {
-    "react": "umd/react.production.min.js"
+  "browser": "htdocs/index.js",
+  "entry": "index.js",
+  "template": "index.html",
+  "cdn": {
+    "@popperjs/core": true,
+    "@tty-pt/ndc": true,
+    "@tty-pt/sub": true,
+    "react": "umd/react.production.min.js",
+    "lodash": true,
+    "xterm": true,
+    "xterm-addon-fit": true,
+    "xterm-addon-web-links": true
   },
   "external": {
     "react": "React",
     "@popperjs/core": "Popper",
     "lodash": "lodash",
-    "@tty-pt/ndc": "ndc",
-    "@tty-pt/sub": "sub",
-    "!xterm": "Terminal",
+    "@tty-pt/ndc": "ttyNdc",
+    "@tty-pt/sub": "ttySub",
+    "xterm": "Terminal",
     "xterm-addon-fit": "FitAddon",
     "xterm-addon-web-links": "WebLinksAddon"
   },
@@ -27,7 +31,7 @@
   "scripts": {
     "test": "scripts test",
     "start": "scripts start",
-    "build": "mkdir htdocs && cp -r art htdocs && scripts build",
+    "build": "scripts build",
     "watch": "scripts watch",
     "lint": "scripts lint"
   },
@@ -42,13 +46,13 @@
   },
   "homepage": "https://github.com/tty-pt/neverdark#readme",
   "devDependencies": {
-    "@tty-pt/scripts": "^0.4.11",
+    "@tty-pt/scripts": "^0.6.0-19",
     "webpack": "^5.89.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@tty-pt/ndc": "^0.1.9",
-    "@tty-pt/sub": "^2.2.13",
+    "@tty-pt/ndc": "^0.1.13",
+    "@tty-pt/sub": "^2.2.24",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "xterm": "^5.3.0",

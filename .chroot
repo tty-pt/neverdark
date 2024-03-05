@@ -1,5 +1,12 @@
+sh
+bash
 sudo
 apt
 strace
 git
 man
+useradd
+usermod
+userdel
+passwd
+/usr/libexec/sudo/sudoers.so
